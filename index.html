@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Breed Bible — Your Complete Guide to Every Dog Breed</title>
+    <meta name="description" content="Comprehensive dog breed guides covering health, training, nutrition, grooming, and everything you need to know about owning your perfect companion.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gold: #C8A45A;
+            --gold-light: #E8D5A0;
+            --navy: #1A1E2E;
+            --navy-deep: #0F1219;
+            --cream: #F5F0E8;
+            --warm-white: #FDFBF7;
+            --bark: #8B6F47;
+            --sage: #7A9E7E;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--navy-deep);
+            color: var(--cream);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Subtle grain texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        /* Decorative top line */
+        .top-accent {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        /* Paw print decorative elements */
+        .paw-prints {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .paw {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.04;
+            color: var(--gold);
+        }
+
+        .paw:nth-child(1) { top: 8%; left: 5%; transform: rotate(-30deg); }
+        .paw:nth-child(2) { top: 15%; right: 12%; transform: rotate(15deg); font-size: 2rem; }
+        .paw:nth-child(3) { top: 45%; left: 8%; transform: rotate(-45deg); }
+        .paw:nth-child(4) { bottom: 20%; right: 6%; transform: rotate(20deg); font-size: 1.8rem; }
+        .paw:nth-child(5) { bottom: 35%; left: 15%; transform: rotate(10deg); }
+        .paw:nth-child(6) { top: 60%; right: 18%; transform: rotate(-25deg); font-size: 1.2rem; }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .site-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 0.3rem;
+        }
+
+        .title-the {
+            display: block;
+            font-size: 0.35em;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        .title-breed {
+            color: var(--cream);
+        }
+
+        .title-bible {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .tagline {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: var(--gold-light);
+            letter-spacing: 0.08em;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 2.5rem auto;
+            position: relative;
+            animation: fadeIn 1.2s ease-out 0.3s both;
+        }
+
+        .divider::before {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--navy-deep);
+            color: var(--gold);
+            font-size: 0.6rem;
+            padding: 0 0.75rem;
+        }
+
+        .coming-soon {
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .coming-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            max-width: 540px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: rgba(245, 240, 232, 0.6);
+            font-weight: 300;
+        }
+
+        .features {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid rgba(200, 164, 90, 0.15);
+            border-radius: 4px;
+            width: 160px;
+            transition: all 0.3s ease;
+            background: rgba(200, 164, 90, 0.03);
+        }
+
+        .feature:hover {
+            border-color: rgba(200, 164, 90, 0.4);
+            background: rgba(200, 164, 90, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .feature-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(245, 240, 232, 0.5);
+            font-weight: 600;
+        }
+
+        .bottom-note {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: rgba(245, 240, 232, 0.3);
+            letter-spacing: 0.05em;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        .bottom-note a {
+            color: var(--gold);
+            text-decoration: none;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .bottom-note a:hover {
+            opacity: 1;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            .features { gap: 1rem; }
+            .feature { width: 140px; padding: 1.2rem; }
+            .tagline { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-accent"></div>
+
+    <div class="paw-prints">
+        <div class="paw">🐾</div>
+        <div class="paw">🐾</div>
+        <div class="paw">🐾</div>
+        <div class="paw">🐾</div>
+        <div class="paw">🐾</div>
+        <div class="paw">🐾</div>
+    </div>
+
+    <div class="container">
+        <div class="logo-section">
+            <div class="logo-icon">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="40" cy="40" r="38" stroke="#C8A45A" stroke-width="1.5" opacity="0.3"/>
+                    <circle cx="40" cy="40" r="28" stroke="#C8A45A" stroke-width="1" opacity="0.15"/>
+                    <text x="40" y="48" text-anchor="middle" font-family="'Playfair Display', serif" font-size="28" font-weight="700" fill="#C8A45A">B</text>
+                </svg>
+            </div>
+            <h1 class="site-title">
+                <span class="title-the">The</span>
+                <span class="title-breed">Breed </span><span class="title-bible">Bible</span>
+            </h1>
+            <p class="tagline">Your Complete Guide to Every Dog Breed</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="coming-soon">
+            <h2 class="coming-label">Launching Soon</h2>
+            <p class="description">
+                Comprehensive, in-depth guides for every recognized dog breed — covering health, training, nutrition, grooming, and everything you need to raise a happy, healthy companion.
+            </p>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-number">200+</div>
+                    <div class="feature-label">Breed Guides</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-number">28</div>
+                    <div class="feature-label">Chapters Each</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-number">100%</div>
+                    <div class="feature-label">Free to Read</div>
+                </div>
+            </div>
+        </div>
+
+        <p class="bottom-note">
+            &copy; 2026 The Breed Bible &mdash; A <a href="https://balanceandfoster.com">Balance &amp; Foster</a> Project
+        </p>
+    </div>
+</body>
+</html>
