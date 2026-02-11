@@ -3,320 +3,647 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Breed Bible — Your Complete Guide to Every Dog Breed</title>
-    <meta name="description" content="Comprehensive dog breed guides covering health, training, nutrition, grooming, and everything you need to know about owning your perfect companion.">
+    <title>The Breed Bible — Complete Dog Breed Guides for Every Owner</title>
+    <meta name="description" content="Comprehensive guides for 200+ dog breeds. Health, training, nutrition, grooming, and expert product recommendations. Find everything you need for your breed.">
+    <meta property="og:title" content="The Breed Bible — Complete Dog Breed Guides">
+    <meta property="og:description" content="200+ breed guides with 28 chapters each. Health, training, nutrition, grooming, and product recommendations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://breedbible.com/">
+    <link rel="canonical" href="https://breedbible.com/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
             --gold: #C8A45A;
             --gold-light: #E8D5A0;
+            --gold-dim: rgba(200, 164, 90, 0.15);
             --navy: #1A1E2E;
             --navy-deep: #0F1219;
+            --navy-light: #232838;
             --cream: #F5F0E8;
             --warm-white: #FDFBF7;
             --bark: #8B6F47;
-            --sage: #7A9E7E;
+            --text: #2C2C2C;
+            --text-light: #666;
         }
-
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Source Sans 3', sans-serif;
+            background: var(--warm-white);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Header */
+        .site-header {
+            background: var(--navy-deep);
+            border-bottom: 2px solid var(--gold);
+            padding: 1rem 2rem;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo { text-decoration: none; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; }
+        .logo-the { font-size: 0.6em; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-right: 0.3em; }
+        .logo-breed { color: var(--cream); }
+        .logo-bible { color: var(--gold); font-style: italic; }
+        .main-nav a { color: var(--cream); text-decoration: none; margin-left: 2rem; font-size: 0.9rem; letter-spacing: 0.05em; opacity: 0.7; transition: opacity 0.3s; }
+        .main-nav a:hover { opacity: 1; }
+
+        /* Hero */
+        .hero {
             background: var(--navy-deep);
             color: var(--cream);
-            min-height: 100vh;
-            overflow-x: hidden;
+            padding: 4rem 2rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-
-        /* Subtle grain texture */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
+        .hero::before {
+            content: '🐾';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.03;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
             z-index: 1;
         }
-
-        .container {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 2rem;
-        }
-
-        /* Decorative top line */
-        .top-accent {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        }
-
-        /* Paw print decorative elements */
-        .paw-prints {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .paw {
-            position: absolute;
-            font-size: 1.5rem;
-            opacity: 0.04;
-            color: var(--gold);
-        }
-
-        .paw:nth-child(1) { top: 8%; left: 5%; transform: rotate(-30deg); }
-        .paw:nth-child(2) { top: 15%; right: 12%; transform: rotate(15deg); font-size: 2rem; }
-        .paw:nth-child(3) { top: 45%; left: 8%; transform: rotate(-45deg); }
-        .paw:nth-child(4) { bottom: 20%; right: 6%; transform: rotate(20deg); font-size: 1.8rem; }
-        .paw:nth-child(5) { bottom: 35%; left: 15%; transform: rotate(10deg); }
-        .paw:nth-child(6) { top: 60%; right: 18%; transform: rotate(-25deg); font-size: 1.2rem; }
-
-        .logo-section {
-            text-align: center;
-            margin-bottom: 2rem;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .logo-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            position: relative;
-        }
-
-        .logo-icon svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .site-title {
+        .hero h1 {
             font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
             font-weight: 900;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.75rem;
         }
-
-        .title-the {
-            display: block;
-            font-size: 0.35em;
-            font-weight: 400;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 0.3rem;
-        }
-
-        .title-breed {
-            color: var(--cream);
-        }
-
-        .title-bible {
-            color: var(--gold);
-            font-style: italic;
-        }
-
-        .tagline {
+        .hero h1 em { color: var(--gold); font-style: italic; }
+        .hero p {
             font-size: 1.15rem;
             font-weight: 300;
             color: var(--gold-light);
-            letter-spacing: 0.08em;
-            margin-top: 1rem;
-            opacity: 0.8;
+            margin-bottom: 2rem;
+            letter-spacing: 0.03em;
         }
 
-        .divider {
-            width: 60px;
-            height: 1px;
-            background: var(--gold);
-            margin: 2.5rem auto;
+        /* Search */
+        .search-box {
             position: relative;
-            animation: fadeIn 1.2s ease-out 0.3s both;
+            max-width: 500px;
+            margin: 0 auto;
         }
-
-        .divider::before {
-            content: '◆';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--navy-deep);
-            color: var(--gold);
-            font-size: 0.6rem;
-            padding: 0 0.75rem;
-        }
-
-        .coming-soon {
-            text-align: center;
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
-
-        .coming-label {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            padding-right: 3.5rem;
+            font-size: 1.1rem;
+            font-family: 'Source Sans 3', sans-serif;
+            border: 2px solid rgba(200, 164, 90, 0.3);
+            border-radius: 50px;
+            background: rgba(255,255,255,0.07);
             color: var(--cream);
-            margin-bottom: 1rem;
+            outline: none;
+            transition: border-color 0.3s, background 0.3s;
         }
-
-        .description {
-            max-width: 540px;
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: rgba(245, 240, 232, 0.6);
-            font-weight: 300;
+        .search-input::placeholder { color: rgba(245, 240, 232, 0.4); }
+        .search-input:focus {
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.12);
         }
-
-        .features {
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0.5;
+        }
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--navy-light);
+            border: 1px solid rgba(200, 164, 90, 0.2);
+            border-radius: 12px;
+            margin-top: 0.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 100;
+        }
+        .search-results.active { display: block; }
+        .search-result-item {
+            padding: 0.75rem 1.5rem;
             display: flex;
-            gap: 2rem;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--cream);
+            transition: background 0.2s;
+        }
+        .search-result-item:hover { background: rgba(200, 164, 90, 0.1); }
+        .search-result-name { font-weight: 600; }
+        .search-result-group { font-size: 0.8rem; color: var(--gold); opacity: 0.7; }
+        .search-count { text-align: center; padding: 1.5rem; font-size: 0.85rem; color: rgba(245,240,232,0.4); }
+
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
             margin-top: 2.5rem;
             flex-wrap: wrap;
-            justify-content: center;
-            animation: fadeInUp 1s ease-out 0.7s both;
         }
-
-        .feature {
-            text-align: center;
-            padding: 1.5rem;
-            border: 1px solid rgba(200, 164, 90, 0.15);
-            border-radius: 4px;
-            width: 160px;
-            transition: all 0.3s ease;
-            background: rgba(200, 164, 90, 0.03);
-        }
-
-        .feature:hover {
-            border-color: rgba(200, 164, 90, 0.4);
-            background: rgba(200, 164, 90, 0.06);
-            transform: translateY(-2px);
-        }
-
-        .feature-number {
+        .stat { text-align: center; }
+        .stat-number {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 1.8rem;
             color: var(--gold);
-            margin-bottom: 0.3rem;
+            display: block;
         }
-
-        .feature-label {
-            font-size: 0.8rem;
+        .stat-label {
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: rgba(245, 240, 232, 0.5);
-            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: rgba(245,240,232,0.4);
         }
 
-        .bottom-note {
-            margin-top: 3rem;
-            font-size: 0.85rem;
-            color: rgba(245, 240, 232, 0.3);
-            letter-spacing: 0.05em;
-            animation: fadeIn 1s ease-out 1s both;
+        /* Sections */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1rem;
         }
 
-        .bottom-note a {
-            color: var(--gold);
+        /* Popular Breeds */
+        .popular-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+        .breed-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1.25rem;
             text-decoration: none;
-            opacity: 0.6;
+            color: var(--text);
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .breed-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(200,164,90,0.15);
+        }
+        .breed-card-emoji { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+        .breed-card-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .breed-card-group {
+            font-size: 0.75rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0.25rem;
+        }
+
+        /* Groups */
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.25rem;
+        }
+        .group-card {
+            background: var(--navy-deep);
+            border-radius: 8px;
+            padding: 1.75rem;
+            text-decoration: none;
+            color: var(--cream);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .group-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .group-card::after {
+            content: '→';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: var(--gold);
+            opacity: 0;
             transition: opacity 0.3s;
         }
-
-        .bottom-note a:hover {
-            opacity: 1;
+        .group-card:hover::after { opacity: 1; }
+        .group-card-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+        .group-card-count {
+            font-size: 0.85rem;
+            color: var(--gold);
+        }
+        .group-card-desc {
+            font-size: 0.85rem;
+            opacity: 0.5;
+            margin-top: 0.5rem;
         }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* A-Z Browser */
+        .az-letters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+        }
+        .az-letter {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .az-letter:hover, .az-letter.active {
+            background: var(--navy-deep);
+            color: var(--gold);
+            border-color: var(--navy-deep);
+        }
+        .az-letter.disabled { opacity: 0.3; pointer-events: none; }
+        .az-breed-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 0.3rem;
+        }
+        .az-breed-link {
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+            font-size: 0.95rem;
+        }
+        .az-breed-link:hover { background: var(--gold-dim); }
+        .az-breed-link .az-group { color: var(--bark); font-size: 0.8rem; margin-left: 0.3rem; }
+
+        /* About */
+        .about-section {
+            background: var(--cream);
+            padding: 3rem 2rem;
+            margin-top: 2rem;
+        }
+        .about-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .about-inner p { margin-bottom: 1rem; font-size: 1.05rem; color: var(--text-light); }
+
+        /* Divider */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto 2rem;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Footer */
+        .site-footer {
+            background: var(--navy-deep);
+            color: var(--cream);
+            padding: 3rem 2rem;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; }
+        .footer-logo em { color: var(--gold); }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { color: var(--cream); text-decoration: none; font-size: 0.85rem; opacity: 0.5; transition: opacity 0.3s; }
+        .footer-links a:hover { opacity: 1; }
+        .footer-legal { font-size: 0.75rem; opacity: 0.3; width: 100%; text-align: center; margin-top: 1rem; }
+        .footer-legal a { color: var(--gold); text-decoration: none; }
 
-        @media (max-width: 600px) {
-            .features { gap: 1rem; }
-            .feature { width: 140px; padding: 1.2rem; }
-            .tagline { font-size: 1rem; }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; gap: 0.5rem; }
+            .main-nav a { margin-left: 1rem; }
+            .stats-bar { gap: 1.5rem; }
+            .popular-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+            .groups-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-links { justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <div class="top-accent"></div>
-
-    <div class="paw-prints">
-        <div class="paw">🐾</div>
-        <div class="paw">🐾</div>
-        <div class="paw">🐾</div>
-        <div class="paw">🐾</div>
-        <div class="paw">🐾</div>
-        <div class="paw">🐾</div>
-    </div>
-
-    <div class="container">
-        <div class="logo-section">
-            <div class="logo-icon">
-                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="40" cy="40" r="38" stroke="#C8A45A" stroke-width="1.5" opacity="0.3"/>
-                    <circle cx="40" cy="40" r="28" stroke="#C8A45A" stroke-width="1" opacity="0.15"/>
-                    <text x="40" y="48" text-anchor="middle" font-family="'Playfair Display', serif" font-size="28" font-weight="700" fill="#C8A45A">B</text>
-                </svg>
-            </div>
-            <h1 class="site-title">
-                <span class="title-the">The</span>
-                <span class="title-breed">Breed </span><span class="title-bible">Bible</span>
-            </h1>
-            <p class="tagline">Your Complete Guide to Every Dog Breed</p>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <span class="logo-the">The</span>
+                <span class="logo-breed">Breed </span><span class="logo-bible">Bible</span>
+            </a>
+            <nav class="main-nav">
+                <a href="/breeds/">All Breeds</a>
+                <a href="#groups">By Group</a>
+                <a href="#az">A — Z</a>
+            </nav>
         </div>
+    </header>
 
-        <div class="divider"></div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Know Your Breed. <em>Love Them Better.</em></h1>
+            <p>Comprehensive guides for 200+ dog breeds — health, training, nutrition, grooming, and the best products for your companion.</p>
+            
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search your breed..." id="breedSearch" autocomplete="off">
+                <span class="search-icon">🔍</span>
+                <div class="search-results" id="searchResults"></div>
+            </div>
 
-        <div class="coming-soon">
-            <h2 class="coming-label">Launching Soon</h2>
-            <p class="description">
-                Comprehensive, in-depth guides for every recognized dog breed — covering health, training, nutrition, grooming, and everything you need to raise a happy, healthy companion.
-            </p>
-
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-number">200+</div>
-                    <div class="feature-label">Breed Guides</div>
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-number">205</span>
+                    <span class="stat-label">Breed Guides</span>
                 </div>
-                <div class="feature">
-                    <div class="feature-number">28</div>
-                    <div class="feature-label">Chapters Each</div>
+                <div class="stat">
+                    <span class="stat-number">28</span>
+                    <span class="stat-label">Chapters Each</span>
                 </div>
-                <div class="feature">
-                    <div class="feature-number">100%</div>
-                    <div class="feature-label">Free to Read</div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Free to Read</span>
                 </div>
             </div>
         </div>
+    </section>
 
-        <p class="bottom-note">
-            &copy; 2026 The Breed Bible &mdash; A <a href="https://balanceandfoster.com">Balance &amp; Foster</a> Project
-        </p>
-    </div>
+    <!-- Popular Breeds -->
+    <section class="section">
+        <h2 class="section-title">Most Popular Breeds</h2>
+        <p class="section-subtitle">The most searched breed guides — start here.</p>
+        <div class="popular-grid">
+            <a href="/breeds/labrador-retriever/" class="breed-card">
+                <span class="breed-card-emoji">🦮</span>
+                <div class="breed-card-name">Labrador Retriever</div>
+                <div class="breed-card-group">Sporting</div>
+            </a>
+            <a href="/breeds/french-bulldog/" class="breed-card">
+                <span class="breed-card-emoji">🐶</span>
+                <div class="breed-card-name">French Bulldog</div>
+                <div class="breed-card-group">Non-Sporting</div>
+            </a>
+            <a href="/breeds/golden-retriever/" class="breed-card">
+                <span class="breed-card-emoji">🐕</span>
+                <div class="breed-card-name">Golden Retriever</div>
+                <div class="breed-card-group">Sporting</div>
+            </a>
+            <a href="/breeds/german-shepherd/" class="breed-card">
+                <span class="breed-card-emoji">🐕‍🦺</span>
+                <div class="breed-card-name">German Shepherd</div>
+                <div class="breed-card-group">Herding</div>
+            </a>
+            <a href="/breeds/poodle/" class="breed-card">
+                <span class="breed-card-emoji">🐩</span>
+                <div class="breed-card-name">Poodle</div>
+                <div class="breed-card-group">Non-Sporting</div>
+            </a>
+            <a href="/breeds/bulldog/" class="breed-card">
+                <span class="breed-card-emoji">🐾</span>
+                <div class="breed-card-name">Bulldog</div>
+                <div class="breed-card-group">Non-Sporting</div>
+            </a>
+            <a href="/breeds/rottweiler/" class="breed-card">
+                <span class="breed-card-emoji">🐕</span>
+                <div class="breed-card-name">Rottweiler</div>
+                <div class="breed-card-group">Working</div>
+            </a>
+            <a href="/breeds/beagle/" class="breed-card">
+                <span class="breed-card-emoji">🐕</span>
+                <div class="breed-card-name">Beagle</div>
+                <div class="breed-card-group">Hound</div>
+            </a>
+            <a href="/breeds/dachshund/" class="breed-card">
+                <span class="breed-card-emoji">🌭</span>
+                <div class="breed-card-name">Dachshund</div>
+                <div class="breed-card-group">Hound</div>
+            </a>
+            <a href="/breeds/german-shorthaired-pointer/" class="breed-card">
+                <span class="breed-card-emoji">🐾</span>
+                <div class="breed-card-name">German Shorthaired Pointer</div>
+                <div class="breed-card-group">Sporting</div>
+            </a>
+            <a href="/breeds/siberian-husky/" class="breed-card">
+                <span class="breed-card-emoji">🐺</span>
+                <div class="breed-card-name">Siberian Husky</div>
+                <div class="breed-card-group">Working</div>
+            </a>
+            <a href="/breeds/pembroke-welsh-corgi/" class="breed-card">
+                <span class="breed-card-emoji">🐾</span>
+                <div class="breed-card-name">Pembroke Welsh Corgi</div>
+                <div class="breed-card-group">Herding</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Browse by Group -->
+    <section class="section" id="groups">
+        <h2 class="section-title">Browse by Group</h2>
+        <p class="section-subtitle">AKC breed groups — each with unique traits and characteristics.</p>
+        <div class="groups-grid">
+            <a href="/breeds/#sporting" class="group-card">
+                <div class="group-card-name">Sporting Group</div>
+                <div class="group-card-count">33 breeds</div>
+                <div class="group-card-desc">Active, alert, and naturally athletic</div>
+            </a>
+            <a href="/breeds/#hound" class="group-card">
+                <div class="group-card-name">Hound Group</div>
+                <div class="group-card-count">33 breeds</div>
+                <div class="group-card-desc">Hunters with incredible scent or sight</div>
+            </a>
+            <a href="/breeds/#working" class="group-card">
+                <div class="group-card-name">Working Group</div>
+                <div class="group-card-count">32 breeds</div>
+                <div class="group-card-desc">Strong, intelligent, and protective</div>
+            </a>
+            <a href="/breeds/#terrier" class="group-card">
+                <div class="group-card-name">Terrier Group</div>
+                <div class="group-card-count">32 breeds</div>
+                <div class="group-card-desc">Feisty, energetic, and spirited</div>
+            </a>
+            <a href="/breeds/#toy" class="group-card">
+                <div class="group-card-name">Toy Group</div>
+                <div class="group-card-count">22 breeds</div>
+                <div class="group-card-desc">Small in size, big in personality</div>
+            </a>
+            <a href="/breeds/#non-sporting" class="group-card">
+                <div class="group-card-name">Non-Sporting Group</div>
+                <div class="group-card-count">20 breeds</div>
+                <div class="group-card-desc">A diverse collection of unique breeds</div>
+            </a>
+            <a href="/breeds/#herding" class="group-card">
+                <div class="group-card-name">Herding Group</div>
+                <div class="group-card-count">33 breeds</div>
+                <div class="group-card-desc">Smart, devoted, and hardworking</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- A-Z Browser -->
+    <section class="section" id="az">
+        <h2 class="section-title">Browse A — Z</h2>
+        <p class="section-subtitle">All 205 recognized AKC breeds.</p>
+        <div class="az-letters" id="azLetters"></div>
+        <div class="az-breed-list" id="azBreedList"></div>
+    </section>
+
+    <!-- About -->
+    <section class="about-section">
+        <div class="about-inner">
+            <h2 class="section-title">About The Breed Bible</h2>
+            <div class="divider"></div>
+            <p>The Breed Bible is a comprehensive, free resource for dog owners and prospective owners. Every breed guide covers 28 essential topics — from health and nutrition to training, grooming, and the best products for your specific breed.</p>
+            <p>Our guides are researched, detailed, and written with one goal: helping you give your dog the best life possible. Whether you're choosing your first breed or caring for a lifelong companion, you'll find everything you need here.</p>
+            <p style="color: var(--bark); font-style: italic; margin-top: 1.5rem;">A Balance &amp; Foster Project</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-logo">The Breed <em>Bible</em></div>
+            <div class="footer-links">
+                <a href="/breeds/">All Breeds</a>
+                <a href="#groups">By Group</a>
+                <a href="#az">A — Z</a>
+            </div>
+            <div class="footer-legal">
+                <p>&copy; 2026 The Breed Bible — A <a href="#">Balance &amp; Foster</a> Project</p>
+                <p style="margin-top: 0.3rem;">As an Amazon Associate, we earn from qualifying purchases.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // All breeds data (embedded for instant search)
+    const breeds = [{"name":"Affenpinscher","group":"Toy","slug":"affenpinscher"},{"name":"Afghan Hound","group":"Hound","slug":"afghan-hound"},{"name":"Airedale Terrier","group":"Terrier","slug":"airedale-terrier"},{"name":"Akita","group":"Working","slug":"akita"},{"name":"Alaskan Malamute","group":"Working","slug":"alaskan-malamute"},{"name":"American English Coonhound","group":"Hound","slug":"american-english-coonhound"},{"name":"American Eskimo Dog","group":"Non-Sporting","slug":"american-eskimo-dog"},{"name":"American Foxhound","group":"Hound","slug":"american-foxhound"},{"name":"American Hairless Terrier","group":"Terrier","slug":"american-hairless-terrier"},{"name":"American Staffordshire Terrier","group":"Terrier","slug":"american-staffordshire-terrier"},{"name":"American Water Spaniel","group":"Sporting","slug":"american-water-spaniel"},{"name":"Anatolian Shepherd Dog","group":"Working","slug":"anatolian-shepherd-dog"},{"name":"Australian Cattle Dog","group":"Herding","slug":"australian-cattle-dog"},{"name":"Australian Shepherd","group":"Herding","slug":"australian-shepherd"},{"name":"Australian Terrier","group":"Terrier","slug":"australian-terrier"},{"name":"Azawakh","group":"Hound","slug":"azawakh"},{"name":"Barbet","group":"Sporting","slug":"barbet"},{"name":"Basenji","group":"Hound","slug":"basenji"},{"name":"Basset Fauve de Bretagne","group":"Hound","slug":"basset-fauve-de-bretagne"},{"name":"Basset Hound","group":"Hound","slug":"basset-hound"},{"name":"Beagle","group":"Hound","slug":"beagle"},{"name":"Bearded Collie","group":"Herding","slug":"bearded-collie"},{"name":"Beauceron","group":"Herding","slug":"beauceron"},{"name":"Bedlington Terrier","group":"Terrier","slug":"bedlington-terrier"},{"name":"Belgian Laekenois","group":"Herding","slug":"belgian-laekenois"},{"name":"Belgian Malinois","group":"Herding","slug":"belgian-malinois"},{"name":"Belgian Sheepdog","group":"Herding","slug":"belgian-sheepdog"},{"name":"Belgian Tervuren","group":"Herding","slug":"belgian-tervuren"},{"name":"Bergamasco Sheepdog","group":"Herding","slug":"bergamasco-sheepdog"},{"name":"Berger Picard","group":"Herding","slug":"berger-picard"},{"name":"Bernese Mountain Dog","group":"Working","slug":"bernese-mountain-dog"},{"name":"Bichon Frise","group":"Non-Sporting","slug":"bichon-frise"},{"name":"Biewer Terrier","group":"Toy","slug":"biewer-terrier"},{"name":"Black and Tan Coonhound","group":"Hound","slug":"black-and-tan-coonhound"},{"name":"Black Russian Terrier","group":"Working","slug":"black-russian-terrier"},{"name":"Bloodhound","group":"Hound","slug":"bloodhound"},{"name":"Bluetick Coonhound","group":"Hound","slug":"bluetick-coonhound"},{"name":"Boerboel","group":"Working","slug":"boerboel"},{"name":"Border Collie","group":"Herding","slug":"border-collie"},{"name":"Border Terrier","group":"Terrier","slug":"border-terrier"},{"name":"Borzoi","group":"Hound","slug":"borzoi"},{"name":"Boston Terrier","group":"Non-Sporting","slug":"boston-terrier"},{"name":"Bouvier des Flandres","group":"Herding","slug":"bouvier-des-flandres"},{"name":"Boxer","group":"Working","slug":"boxer"},{"name":"Boykin Spaniel","group":"Sporting","slug":"boykin-spaniel"},{"name":"Bracco Italiano","group":"Sporting","slug":"bracco-italiano"},{"name":"Briard","group":"Herding","slug":"briard"},{"name":"Brittany","group":"Sporting","slug":"brittany"},{"name":"Brussels Griffon","group":"Toy","slug":"brussels-griffon"},{"name":"Bull Terrier","group":"Terrier","slug":"bull-terrier"},{"name":"Bulldog","group":"Non-Sporting","slug":"bulldog"},{"name":"Bullmastiff","group":"Working","slug":"bullmastiff"},{"name":"Cairn Terrier","group":"Terrier","slug":"cairn-terrier"},{"name":"Canaan Dog","group":"Herding","slug":"canaan-dog"},{"name":"Cane Corso","group":"Working","slug":"cane-corso"},{"name":"Cardigan Welsh Corgi","group":"Herding","slug":"cardigan-welsh-corgi"},{"name":"Cavalier King Charles Spaniel","group":"Toy","slug":"cavalier-king-charles-spaniel"},{"name":"Cesky Terrier","group":"Terrier","slug":"cesky-terrier"},{"name":"Chesapeake Bay Retriever","group":"Sporting","slug":"chesapeake-bay-retriever"},{"name":"Chihuahua","group":"Toy","slug":"chihuahua"},{"name":"Chinese Crested","group":"Toy","slug":"chinese-crested"},{"name":"Chinese Shar-Pei","group":"Non-Sporting","slug":"chinese-shar-pei"},{"name":"Chinook","group":"Working","slug":"chinook"},{"name":"Chow Chow","group":"Non-Sporting","slug":"chow-chow"},{"name":"Cirneco dell\u0027Etna","group":"Hound","slug":"cirneco-delletna"},{"name":"Clumber Spaniel","group":"Sporting","slug":"clumber-spaniel"},{"name":"Cocker Spaniel","group":"Sporting","slug":"cocker-spaniel"},{"name":"Collie","group":"Herding","slug":"collie"},{"name":"Coton de Tulear","group":"Non-Sporting","slug":"coton-de-tulear"},{"name":"Curly-Coated Retriever","group":"Sporting","slug":"curly-coated-retriever"},{"name":"Dachshund","group":"Hound","slug":"dachshund"},{"name":"Dalmatian","group":"Non-Sporting","slug":"dalmatian"},{"name":"Dandie Dinmont Terrier","group":"Terrier","slug":"dandie-dinmont-terrier"},{"name":"Danish-Swedish Farmdog","group":"Herding","slug":"danish-swedish-farmdog"},{"name":"Doberman Pinscher","group":"Working","slug":"doberman-pinscher"},{"name":"Dogo Argentino","group":"Working","slug":"dogo-argentino"},{"name":"Dogue de Bordeaux","group":"Working","slug":"dogue-de-bordeaux"},{"name":"English Cocker Spaniel","group":"Sporting","slug":"english-cocker-spaniel"},{"name":"English Foxhound","group":"Hound","slug":"english-foxhound"},{"name":"English Setter","group":"Sporting","slug":"english-setter"},{"name":"English Springer Spaniel","group":"Sporting","slug":"english-springer-spaniel"},{"name":"English Toy Spaniel","group":"Toy","slug":"english-toy-spaniel"},{"name":"Entlebucher Mountain Dog","group":"Herding","slug":"entlebucher-mountain-dog"},{"name":"Field Spaniel","group":"Sporting","slug":"field-spaniel"},{"name":"Finnish Lapphund","group":"Herding","slug":"finnish-lapphund"},{"name":"Finnish Spitz","group":"Non-Sporting","slug":"finnish-spitz"},{"name":"Flat-Coated Retriever","group":"Sporting","slug":"flat-coated-retriever"},{"name":"French Bulldog","group":"Non-Sporting","slug":"french-bulldog"},{"name":"German Pinscher","group":"Working","slug":"german-pinscher"},{"name":"German Shepherd Dog","group":"Herding","slug":"german-shepherd"},{"name":"German Shorthaired Pointer","group":"Sporting","slug":"german-shorthaired-pointer"},{"name":"German Wirehaired Pointer","group":"Sporting","slug":"german-wirehaired-pointer"},{"name":"Giant Schnauzer","group":"Working","slug":"giant-schnauzer"},{"name":"Glen of Imaal Terrier","group":"Terrier","slug":"glen-of-imaal-terrier"},{"name":"Golden Retriever","group":"Sporting","slug":"golden-retriever"},{"name":"Gordon Setter","group":"Sporting","slug":"gordon-setter"},{"name":"Grand Basset Griffon Vendeen","group":"Hound","slug":"grand-basset-griffon-vendeen"},{"name":"Great Dane","group":"Working","slug":"great-dane"},{"name":"Great Pyrenees","group":"Working","slug":"great-pyrenees"},{"name":"Greater Swiss Mountain Dog","group":"Working","slug":"greater-swiss-mountain-dog"},{"name":"Greyhound","group":"Hound","slug":"greyhound"},{"name":"Harrier","group":"Hound","slug":"harrier"},{"name":"Havanese","group":"Toy","slug":"havanese"},{"name":"Ibizan Hound","group":"Hound","slug":"ibizan-hound"},{"name":"Icelandic Sheepdog","group":"Herding","slug":"icelandic-sheepdog"},{"name":"Irish Red and White Setter","group":"Sporting","slug":"irish-red-and-white-setter"},{"name":"Irish Setter","group":"Sporting","slug":"irish-setter"},{"name":"Irish Terrier","group":"Terrier","slug":"irish-terrier"},{"name":"Irish Water Spaniel","group":"Sporting","slug":"irish-water-spaniel"},{"name":"Irish Wolfhound","group":"Hound","slug":"irish-wolfhound"},{"name":"Italian Greyhound","group":"Toy","slug":"italian-greyhound"},{"name":"Japanese Chin","group":"Toy","slug":"japanese-chin"},{"name":"Keeshond","group":"Non-Sporting","slug":"keeshond"},{"name":"Kerry Blue Terrier","group":"Terrier","slug":"kerry-blue-terrier"},{"name":"Komondor","group":"Working","slug":"komondor"},{"name":"Kuvasz","group":"Working","slug":"kuvasz"},{"name":"Labrador Retriever","group":"Sporting","slug":"labrador-retriever"},{"name":"Lagotto Romagnolo","group":"Sporting","slug":"lagotto-romagnolo"},{"name":"Lakeland Terrier","group":"Terrier","slug":"lakeland-terrier"},{"name":"Lancashire Heeler","group":"Herding","slug":"lancashire-heeler"},{"name":"Leonberger","group":"Working","slug":"leonberger"},{"name":"Lhasa Apso","group":"Non-Sporting","slug":"lhasa-apso"},{"name":"Lowchen","group":"Non-Sporting","slug":"lowchen"},{"name":"Maltese","group":"Toy","slug":"maltese"},{"name":"Manchester Terrier","group":"Terrier","slug":"manchester-terrier"},{"name":"Mastiff","group":"Working","slug":"mastiff"},{"name":"Miniature American Shepherd","group":"Herding","slug":"miniature-american-shepherd"},{"name":"Miniature Bull Terrier","group":"Terrier","slug":"miniature-bull-terrier"},{"name":"Miniature Pinscher","group":"Toy","slug":"miniature-pinscher"},{"name":"Miniature Schnauzer","group":"Terrier","slug":"miniature-schnauzer"},{"name":"Mudi","group":"Herding","slug":"mudi"},{"name":"Neapolitan Mastiff","group":"Working","slug":"neapolitan-mastiff"},{"name":"Nederlandse Kooikerhondje","group":"Sporting","slug":"nederlandse-kooikerhondje"},{"name":"Newfoundland","group":"Working","slug":"newfoundland"},{"name":"Norfolk Terrier","group":"Terrier","slug":"norfolk-terrier"},{"name":"Norwegian Buhund","group":"Herding","slug":"norwegian-buhund"},{"name":"Norwegian Elkhound","group":"Hound","slug":"norwegian-elkhound"},{"name":"Norwegian Lundehund","group":"Non-Sporting","slug":"norwegian-lundehund"},{"name":"Norwich Terrier","group":"Terrier","slug":"norwich-terrier"},{"name":"Nova Scotia Duck Tolling Retriever","group":"Sporting","slug":"nova-scotia-duck-tolling-retriever"},{"name":"Old English Sheepdog","group":"Herding","slug":"old-english-sheepdog"},{"name":"Otterhound","group":"Hound","slug":"otterhound"},{"name":"Papillon","group":"Toy","slug":"papillon"},{"name":"Parson Russell Terrier","group":"Terrier","slug":"parson-russell-terrier"},{"name":"Pekingese","group":"Toy","slug":"pekingese"},{"name":"Pembroke Welsh Corgi","group":"Herding","slug":"pembroke-welsh-corgi"},{"name":"Petit Basset Griffon Vendeen","group":"Hound","slug":"petit-basset-griffon-vendeen"},{"name":"Pharaoh Hound","group":"Hound","slug":"pharaoh-hound"},{"name":"Plott Hound","group":"Hound","slug":"plott-hound"},{"name":"Pointer","group":"Sporting","slug":"pointer"},{"name":"Polish Lowland Sheepdog","group":"Herding","slug":"polish-lowland-sheepdog"},{"name":"Pomeranian","group":"Toy","slug":"pomeranian"},{"name":"Poodle","group":"Non-Sporting","slug":"poodle"},{"name":"Portuguese Podengo Pequeno","group":"Hound","slug":"portuguese-podengo-pequeno"},{"name":"Portuguese Water Dog","group":"Working","slug":"portuguese-water-dog"},{"name":"Pug","group":"Toy","slug":"pug"},{"name":"Puli","group":"Herding","slug":"puli"},{"name":"Pumi","group":"Herding","slug":"pumi"},{"name":"Pyrenean Shepherd","group":"Herding","slug":"pyrenean-shepherd"},{"name":"Rat Terrier","group":"Terrier","slug":"rat-terrier"},{"name":"Redbone Coonhound","group":"Hound","slug":"redbone-coonhound"},{"name":"Rhodesian Ridgeback","group":"Hound","slug":"rhodesian-ridgeback"},{"name":"Rottweiler","group":"Working","slug":"rottweiler"},{"name":"Russell Terrier","group":"Terrier","slug":"russell-terrier"},{"name":"Russian Toy","group":"Toy","slug":"russian-toy"},{"name":"Russian Tsvetnaya Bolonka","group":"Toy","slug":"russian-tsvetnaya-bolonka"},{"name":"St. Bernard","group":"Working","slug":"st-bernard"},{"name":"Saluki","group":"Hound","slug":"saluki"},{"name":"Samoyed","group":"Working","slug":"samoyed"},{"name":"Schipperke","group":"Non-Sporting","slug":"schipperke"},{"name":"Scottish Deerhound","group":"Hound","slug":"scottish-deerhound"},{"name":"Scottish Terrier","group":"Terrier","slug":"scottish-terrier"},{"name":"Sealyham Terrier","group":"Terrier","slug":"sealyham-terrier"},{"name":"Shetland Sheepdog","group":"Herding","slug":"shetland-sheepdog"},{"name":"Shiba Inu","group":"Non-Sporting","slug":"shiba-inu"},{"name":"Shih Tzu","group":"Toy","slug":"shih-tzu"},{"name":"Siberian Husky","group":"Working","slug":"siberian-husky"},{"name":"Silky Terrier","group":"Toy","slug":"silky-terrier"},{"name":"Skye Terrier","group":"Terrier","slug":"skye-terrier"},{"name":"Sloughi","group":"Hound","slug":"sloughi"},{"name":"Smooth Fox Terrier","group":"Terrier","slug":"smooth-fox-terrier"},{"name":"Soft Coated Wheaten Terrier","group":"Terrier","slug":"soft-coated-wheaten-terrier"},{"name":"Spanish Water Dog","group":"Herding","slug":"spanish-water-dog"},{"name":"Spinone Italiano","group":"Sporting","slug":"spinone-italiano"},{"name":"Staffordshire Bull Terrier","group":"Terrier","slug":"staffordshire-bull-terrier"},{"name":"Standard Schnauzer","group":"Working","slug":"standard-schnauzer"},{"name":"Sussex Spaniel","group":"Sporting","slug":"sussex-spaniel"},{"name":"Swedish Vallhund","group":"Herding","slug":"swedish-vallhund"},{"name":"Teddy Roosevelt Terrier","group":"Terrier","slug":"teddy-roosevelt-terrier"},{"name":"Tibetan Mastiff","group":"Working","slug":"tibetan-mastiff"},{"name":"Tibetan Spaniel","group":"Non-Sporting","slug":"tibetan-spaniel"},{"name":"Tibetan Terrier","group":"Non-Sporting","slug":"tibetan-terrier"},{"name":"Toy Fox Terrier","group":"Toy","slug":"toy-fox-terrier"},{"name":"Treeing Walker Coonhound","group":"Hound","slug":"treeing-walker-coonhound"},{"name":"Vizsla","group":"Sporting","slug":"vizsla"},{"name":"Weimaraner","group":"Sporting","slug":"weimaraner"},{"name":"Welsh Springer Spaniel","group":"Sporting","slug":"welsh-springer-spaniel"},{"name":"Welsh Terrier","group":"Terrier","slug":"welsh-terrier"},{"name":"West Highland White Terrier","group":"Terrier","slug":"west-highland-white-terrier"},{"name":"Whippet","group":"Hound","slug":"whippet"},{"name":"Wire Fox Terrier","group":"Terrier","slug":"wire-fox-terrier"},{"name":"Wirehaired Pointing Griffon","group":"Sporting","slug":"wirehaired-pointing-griffon"},{"name":"Wirehaired Vizsla","group":"Sporting","slug":"wirehaired-vizsla"},{"name":"Xoloitzcuintli","group":"Non-Sporting","slug":"xoloitzcuintli"},{"name":"Yorkshire Terrier","group":"Toy","slug":"yorkshire-terrier"}];
+
+    // Search functionality
+    const searchInput = document.getElementById('breedSearch');
+    const searchResults = document.getElementById('searchResults');
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        if (query.length < 1) {
+            searchResults.classList.remove('active');
+            return;
+        }
+
+        const matches = breeds.filter(b => 
+            b.name.toLowerCase().includes(query) || 
+            b.group.toLowerCase().includes(query)
+        ).slice(0, 8);
+
+        if (matches.length === 0) {
+            searchResults.innerHTML = '<div class="search-count">No breeds found</div>';
+        } else {
+            searchResults.innerHTML = matches.map(b => 
+                `<a href="/breeds/${b.slug}/" class="search-result-item">
+                    <span class="search-result-name">${b.name}</span>
+                    <span class="search-result-group">${b.group}</span>
+                </a>`
+            ).join('');
+        }
+        searchResults.classList.add('active');
+    });
+
+    // Close search on click outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.search-box')) {
+            searchResults.classList.remove('active');
+        }
+    });
+
+    // A-Z Browser
+    const azLetters = document.getElementById('azLetters');
+    const azBreedList = document.getElementById('azBreedList');
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const breedsByLetter = {};
+
+    breeds.forEach(b => {
+        const letter = b.name[0].toUpperCase();
+        if (!breedsByLetter[letter]) breedsByLetter[letter] = [];
+        breedsByLetter[letter].push(b);
+    });
+
+    // Build letter buttons
+    alphabet.split('').forEach(letter => {
+        const btn = document.createElement('div');
+        btn.className = 'az-letter' + (breedsByLetter[letter] ? '' : ' disabled');
+        btn.textContent = letter;
+        btn.onclick = () => showLetter(letter);
+        azLetters.appendChild(btn);
+    });
+
+    function showLetter(letter) {
+        // Update active state
+        document.querySelectorAll('.az-letter').forEach(l => l.classList.remove('active'));
+        event.target.classList.add('active');
+
+        const letterBreeds = breedsByLetter[letter] || [];
+        azBreedList.innerHTML = letterBreeds.map(b =>
+            `<a href="/breeds/${b.slug}/" class="az-breed-link">${b.name} <span class="az-group">${b.group}</span></a>`
+        ).join('');
+    }
+
+    // Show 'A' breeds by default
+    showLetter('A');
+    document.querySelector('.az-letter').classList.add('active');
+    </script>
 </body>
 </html>
