@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Care Articles & Guides — The Breed Bible</title>
+    <meta name="description" content="Expert articles on dog breeds, training, nutrition, health, and product recommendations. Evidence-based guides for dog owners.">
+    <meta property="og:title" content="Dog Care Articles & Guides — The Breed Bible">
+    <meta property="og:description" content="Expert articles on dog breeds, training, nutrition, health, and product recommendations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://breedbible.com/articles/">
+    <meta property="og:image" content="https://breedbible.com/images/og-default.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://breedbible.com/articles/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C8A45A;
+            --gold-light: #E8D5A0;
+            --gold-dim: rgba(200, 164, 90, 0.15);
+            --navy: #1A1E2E;
+            --navy-deep: #0F1219;
+            --navy-light: #232838;
+            --cream: #F5F0E8;
+            --warm-white: #FDFBF7;
+            --bark: #8B6F47;
+            --text: #2C2C2C;
+            --text-light: #666;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--warm-white);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        .site-header {
+            background: var(--navy-deep);
+            border-bottom: 2px solid var(--gold);
+            padding: 1rem 2rem;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo { text-decoration: none; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; }
+        .logo-the { font-size: 0.6em; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-right: 0.3em; }
+        .logo-breed { color: var(--cream); }
+        .logo-bible { color: var(--gold); font-style: italic; }
+        .main-nav a { color: var(--cream); text-decoration: none; margin-left: 2rem; font-size: 0.9rem; letter-spacing: 0.05em; opacity: 0.7; transition: opacity 0.3s; }
+        .main-nav a:hover { opacity: 1; }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+            color: var(--cream);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+        .page-header h1 em { color: var(--gold); font-style: italic; }
+        .page-header p {
+            color: var(--gold-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .articles-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .article-card-content {
+            padding: 1.5rem;
+        }
+        .article-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+        }
+        .article-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .article-card .meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--gold);
+        }
+
+        .site-footer {
+            background: var(--navy-deep);
+            color: var(--cream);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="logo"><span class="logo-the">The</span><span class="logo-breed">Breed</span><span class="logo-bible">Bible</span></a>
+            <nav class="main-nav">
+                <a href="/breeds/">All Breeds</a>
+                <a href="/articles/">Articles</a>
+            </nav>
+        </div>
+    </header>
+
+    <header class="page-header">
+        <h1>Articles & <em>Guides</em></h1>
+        <p>Evidence-based articles on breeds, training, nutrition, and product recommendations to help you give your dog the best life possible.</p>
+    </header>
+
+    <main class="articles-grid">
+        <a href="/articles/golden-retriever-vs-labrador-comparison/" class="article-card">
+            <div class="article-card-content">
+                <h2>Golden Retriever vs Labrador Retriever</h2>
+                <p>America's two most popular family dogs compared in detail. Temperament, grooming, health, training, and costs — everything you need to choose.</p>
+                <div class="meta">
+                    <span>Breed Comparison</span>
+                    <span>Feb 2024</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Article slots for future content -->
+        <div class="article-card" style="opacity: 0.6;">
+            <div class="article-card-content">
+                <h2>Best Dog Food for Golden Retrievers</h2>
+                <p>Coming soon: Our top picks for Golden Retriever nutrition, including puppy, adult, and senior formulas.</p>
+                <div class="meta">
+                    <span>Nutrition</span>
+                    <span>Coming Soon</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-card" style="opacity: 0.6;">
+            <div class="article-card-content">
+                <h2>Best Dog Food for Labrador Retrievers</h2>
+                <p>Coming soon: Weight management formulas and high-protein options for active Labs.</p>
+                <div class="meta">
+                    <span>Nutrition</span>
+                    <span>Coming Soon</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-card" style="opacity: 0.6;">
+            <div class="article-card-content">
+                <h2>Complete Puppy Training Guide</h2>
+                <p>Coming soon: From house training to basic obedience — everything you need for your new puppy's first year.</p>
+                <div class="meta">
+                    <span>Training</span>
+                    <span>Coming Soon</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-card" style="opacity: 0.6;">
+            <div class="article-card-content">
+                <h2>German Shepherd vs Belgian Malinois</h2>
+                <p>Coming soon: Two working breeds with very different needs. Which guardian breed fits your lifestyle?</p>
+                <div class="meta">
+                    <span>Breed Comparison</span>
+                    <span>Coming Soon</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-card" style="opacity: 0.6;">
+            <div class="article-card-content">
+                <h2>Best Dog Crates for Large Breeds</h2>
+                <p>Coming soon: Wire, plastic, and furniture-style crates reviewed for durability and value.</p>
+                <div class="meta">
+                    <span>Products</span>
+                    <span>Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2024 The Breed Bible. All rights reserved. | <a href="/" style="color: var(--gold);">Home</a> | <a href="/breeds/" style="color: var(--gold);">All Breeds</a></p>
+    </footer>
+</body>
+</html>
